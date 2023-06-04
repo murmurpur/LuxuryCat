@@ -48,7 +48,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/breedRecycler"
+        android:id="@+id/categoryRecycler"
         tools:listitem="@layout/layout_category_item"
         android:orientation="horizontal"
         android:layout_marginTop="12dp"
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         tools:listitem="@layout/layout_product_item"
         android:layout_marginTop="12dp"
-        android:id="@+id/ageRecycler"
+        android:id="@+id/productRecycler"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
