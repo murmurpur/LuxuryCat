@@ -1,13 +1,17 @@
 package com.example.luxurycat.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat.getCategory
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.luxurycat.R
+import com.example.luxurycat.activity.ProductDetailsActivity
 import com.example.luxurycat.adapter.CategoryAdapter
 import com.example.luxurycat.adapter.ProductAdapter
 import com.example.luxurycat.databinding.FragmentHomeBinding
@@ -15,18 +19,26 @@ import com.example.luxurycat.model.AddProductModel
 import com.example.luxurycat.model.CategoryModel
 import com.google.firebase.firestore.ktx.*
 import com.google.firebase.ktx.Firebase
+import android.widget.Button
+
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
+
+        binding.button2.setOnClickListener{
+            val intent = Intent(requireContext(), ProductDetailsActivity::class.java)
+        }
+
+        val preference = requireContext().getSharedPreferences("info", AppCompatActivity.MODE_PRIVATE)
+
+        if (preference.getBoolean("isCart", false))
+            findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
 
         getCategories()
         getSliderImage()
