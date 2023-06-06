@@ -1,26 +1,45 @@
 package com.example.luxurycat.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.luxurycat.databinding.FragmentHomeBinding
+import com.bumptech.glide.Glide
+import com.example.luxurycat.activity.ProductDetailsActivity
 import com.example.luxurycat.databinding.LayoutProductItemBinding
-import com.example.luxurycat.model.AddCatModel
+import com.example.luxurycat.model.AddProductModel
 
-class ProductAdapter(val context: Context, val list : ArrayList<AddCatModel>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
+class ProductAdapter(val context: Context, val list : ArrayList<AddProductModel>)
+    : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
 
 
-    inner class ProductViewHolder(val binding: LayoutProductItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ProductViewHolder(val binding: LayoutProductItemBinding)
+        : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        TODO("Not yet implemented")
-    }
-
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        val binding = LayoutProductItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        return ProductViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val data = list[position]
+
+        Glide.with(context).load(data.productCoverImg).into(holder.binding.imageView2)
+        holder.binding.textView.text = data.productName
+        holder.binding.textView3.text = data.productCategory
+        holder.binding.textView4.text = data.productMrp
+
+        holder.binding.button.text = data.productSp
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ProductDetailsActivity::class.java)
+            intent.putExtra("id", list[position].productId)
+            context.startActivity(intent)
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return list.size
     }
 }
