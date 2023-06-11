@@ -27,6 +27,7 @@ class CheckoutActivity : AppCompatActivity() {
         binding.proceed.setOnClickListener{
             uploadData()
         }
+
     }
 
 
@@ -77,11 +78,16 @@ class CheckoutActivity : AppCompatActivity() {
 
         val firestore = Firebase.firestore.collection("allOrders")
         val key = firestore.document().id
+
         data["orderId"] = key
 
+
         firestore.add(data).addOnSuccessListener {
+
             Toast.makeText(this , "Order Placed", Toast.LENGTH_SHORT).show()
+
             startActivity(Intent(this, MainActivity::class.java))
+
             finish()
 
         }.addOnFailureListener {

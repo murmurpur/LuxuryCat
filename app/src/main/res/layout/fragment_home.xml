@@ -51,7 +51,7 @@
             android:textStyle="bold"
             android:layout_alignParentEnd="true"
             android:textSize="16sp"
-            android:text="See all"/>
+            android:text=""/>
 
     </RelativeLayout>
 
@@ -84,7 +84,7 @@
             android:textStyle="bold"
             android:layout_alignParentEnd="true"
             android:textSize="16sp"
-            android:text="See all"/>
+            android:text=""/>
 
     </RelativeLayout>
 
