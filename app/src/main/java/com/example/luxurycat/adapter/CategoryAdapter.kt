@@ -31,7 +31,7 @@ class CategoryAdapter(var context : Context, val list : ArrayList<CategoryModel>
         holder.itemView.setOnClickListener {
             val intent = Intent(context, CategoryActivity::class.java)
             intent.putExtra("cat", list[position].cat)
-            context.startActivities(arrayOf(intent))
+            context.startActivity(intent)
         }
     }
 
